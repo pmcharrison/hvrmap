@@ -1,3 +1,4 @@
+#' @export
 generate_transpose_pc_chord_id <- function() {
   pc_chords <- hrep::list_chords("pc_chord")
   n <- length(pc_chords)
@@ -16,6 +17,7 @@ generate_transpose_pc_chord_id <- function() {
   x
 }
 
+#' @export
 transpose_pc_chord_id <- function(pc_chord_id, interval) {
   checkmate::qassert(interval, "X1")
   hvrmap::pc_chord_transpositions[(interval %% 12L) + 1L, pc_chord_id]
