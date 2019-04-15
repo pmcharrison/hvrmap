@@ -10,6 +10,7 @@ LazyData: true
 Imports: 
     checkmate,
     hrep,
+    incon,
     memoise,
     parn88,
     plyr,
@@ -18,4 +19,5 @@ Imports:
     utils
 Remotes:
     pmcharrison/hrep,
+    pmcharrison/incon,
     pmcharrison/parn88
