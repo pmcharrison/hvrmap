@@ -1,3 +1,4 @@
+^data-raw$
 ^LICENSE\.md$
 ^hvrmap\.Rproj$
 ^\.Rproj\.user$

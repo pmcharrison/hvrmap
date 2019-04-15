@@ -7,3 +7,15 @@ Depends: R (>= 3.4.0)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+Imports: 
+    checkmate,
+    hrep,
+    memoise,
+    parn88,
+    plyr,
+    purrr,
+    R.utils,
+    utils
+Remotes:
+    pmcharrison/hrep,
+    pmcharrison/parn88
