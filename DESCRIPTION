@@ -16,9 +16,11 @@ Imports:
     plyr,
     purrr,
     R.utils,
-    utils
+    utils,
+    voicer
 Remotes:
     pmcharrison/hrep,
     pmcharrison/incon,
-    pmcharrison/parn88
+    pmcharrison/parn88,
+    pmcharrison/voicer
 RoxygenNote: 6.1.1

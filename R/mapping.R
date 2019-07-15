@@ -33,6 +33,11 @@ new_map$milne_pc_spectrum <- function(pc_chords) {
   plyr::laply(pc_chords, hrep::milne_pc_spectrum, .progress = "text")
 }
 
+#' Generate pc_chord map
+#'
+#' This function generates mappings between pc_chord IDs and derived features.
+#'
+#' @export
 generate_map_pc_chord <- function() {
   pc_chord_ids <- seq_len(hrep::alphabet_size("pc_chord"))
   pc_chords <- hrep::list_chords("pc_chord")
@@ -42,24 +47,22 @@ generate_map_pc_chord <- function() {
 
   bass_pc_rel_root <- (bass_pcs - root_pcs) %% 12L
 
+  map_pc_chord_type <- new_map$pc_chord_type(pc_chords)
+
   message("Applying consonance models...")
   R.utils::mkdirs("cache/incon")
   incon <- memoise::memoise(incon::incon,
                             cache = memoise::cache_filesystem("cache/incon"))
-  # voicings <- hvr::.pc_chord_ideal_voicings
-
-  consonance <- pc_chords %>%
-    purrr::map(hrep::pc_chord_type) %>%
-    purrr::map(as.integer) %>%
-    purrr::map(`+`, 60L) %>%
-    purrr::map(hrep::pi_chord) %>%
+  consonance <-
+    voicer::pc_chord_type_ideal_voicings %>%
     plyr::laply(incon,
                 model = c("hutch_78_roughness",
                           "har_18_harmonicity"),
-                .progress = "text")
+                .progress = "time") %>%
+    {.[map_pc_chord_type, ]}
 
   list(
-    pc_chord_type_id = new_map$pc_chord_type(pc_chords), # alphabet: pc_chord_type
+    pc_chord_type_id = map_pc_chord_type, # alphabet: pc_chord_type
 
     pc_set_id = hrep::pc_chord_id_to_pc_set_id_map,  # alphabet: pc_set
     pc_set_rel_root_id = new_map$pc_set_rel_root(pc_chords, root_pcs), # alphabet: pc_set_rel_root
