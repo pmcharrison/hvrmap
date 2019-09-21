@@ -7,6 +7,7 @@ Depends: R (>= 3.4.0)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+LazyDataCompression: xz
 Imports: 
     checkmate,
     hrep,
@@ -17,10 +18,16 @@ Imports:
     purrr,
     R.utils,
     utils,
-    voicer
+    voicer,
+    magrittr,
+    Rdpack
 Remotes:
     pmcharrison/hrep,
     pmcharrison/incon,
     pmcharrison/parn88,
     pmcharrison/voicer
+RdMacros: Rdpack
 RoxygenNote: 6.1.1
+Suggests: 
+    testthat (>= 2.1.0),
+    usethis

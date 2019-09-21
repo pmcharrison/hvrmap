@@ -30,9 +30,12 @@ new_map$pc_set_rel_root <- function(pc_chords, root_pcs) {
 
 new_map$milne_pc_spectrum <- function(pc_chords) {
   message("Generating Milne pitch-class spectra...")
-  plyr::laply(pc_chords,
+  x <- plyr::laply(pc_chords,
               function(x) as.numeric(hrep::milne_pc_spectrum(x)),
-              .progress = "time")
+              .progress = "time") %>%
+    t()
+  dimnames(x) <- NULL
+  x
 }
 
 #' Generate pc_chord map
